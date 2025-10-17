@@ -1,0 +1,14 @@
+name: 🌅 Morning Greeting
+
+on:
+  schedule:
+    # 9:00 AM UTC every day
+    - cron: "0 7 * * *"
+  workflow_dispatch:  # allows manual runs from the UI
+
+jobs:
+  say_hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print greeting
+        run: echo "🌅 Good morning, Sam! Have a productive day 🚀"
