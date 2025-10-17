@@ -13,7 +13,8 @@ jobs:
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: |
+          quote=$(curl -s https://zenquotes.io/api/random | jq -r '.[0].q + " — " + .[0].a')
           curl -H "Content-Type: application/json" \
                -X POST \
-               -d '{"content":"🌅 Good morning, Sam! Have a productive day 🚀"}' \
-               "${DISCORD_WEBHOOK_URL}?wait=true"
+               -d "{\"content\": \"🌅 **Good morning, Sam!**\\n💡 $quote\"}" \
+               "${{ secrets.DISCORD_WEBHOOK_URL }}?wait=true"
